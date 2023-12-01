@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  backend_api:
+    image: dockerhubusername/saasrbackend:latest
+    ports:
+      - 8888:8888
+    tty: true
+
+    command: bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload"
+
+    environment:
+      SAASR_DEBUG: 0
+      PYTHONPATH: "."
+      SAASR_SUPERUSER_EMAIL: mail@example.com
+      SAASR_SUPERUSER_PASSWORD: pass
+      SAASR_SENDINBLUE_API_KEY: key_from_send_in_blue
+      SAASR_IYZICO_API_KEY: iyzico_api_key
+      SAASR_IYZICO_SECRET_KEY: iyzico_secret_key
+      SAASR_TOKEN_SECRET_KEY: a secret key
+      SAASR_TOKEN_ALGORITHM: HS256
+      SHAREDPOSTGRES_SUPERUSERNAME: postgres
+      SHAREDPOSTGRES_SUPERUSERPASS: postgres123
+      SHAREDPOSTGRES_HOST: backend_postgres
+      SHAREDPOSTGRES_PORT: 5432
+      SHAREDPOSTGRES_SUPERUSERDB: postgres
+      SAASR_ENV_NAME:
+
+  backend_postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - backend_postgres_data:/var/lib/postgresql/data:cached
+
+volumes:
+  backend_postgres_data:
