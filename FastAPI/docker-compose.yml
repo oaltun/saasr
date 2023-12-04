@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  backend_api:
+    container_name: fastapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    tty: true
+    depends_on:
+      - backend_postgres
+    command: bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload"
+    environment:
+      SAASR_DEBUG: ${SAASR_DEBUG:-0}
+      SAASR_SUPERUSER_EMAIL: ${SAASR_SUPERUSER_EMAIL:-mail@example.com}
+      SAASR_SUPERUSER_PASSWORD: ${SAASR_SUPERUSER_PASSWORD:-pass}
+      SENDINBLUE_API_KEY: ${SENDINBLUE_API_KEY:-key_from_send_in_blue}
+      IYZICO_API_KEY: ${IYZICO_API_KEY:-iyzico_api_key}
+      IYZICO_SECRET_KEY: ${IYZICO_SECRET_KEY:-iyzico_secret_key}
+      SAASR_TOKEN_SECRET_KEY: ${SAASR_TOKEN_SECRET_KEY:-a secret key}
+      SAASR_TOKEN_ALGORITHM: ${SAASR_TOKEN_ALGORITHM:-HS256}
+      POSTGRES_SUPERUSERNAME: ${POSTGRES_SUPERUSERNAME:-postgres}
+      POSTGRES_SUPERUSERPASS: ${POSTGRES_SUPERUSERPASS:-postgres123}
+      POSTGRES_HOST: ${POSTGRES_HOST:-backend_postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      POSTGRES_SUPERUSERDB: ${POSTGRES_SUPERUSERDB:-postgres}
+      SAASR_ENV_NAME: ${SAASR_ENV_NAME:-dev}
+
+  backend_postgres:
+    container_name: postgres
+
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    volumes:
+      - backend_postgres_data:/var/lib/postgresql/data:cached
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: postgres
+
+volumes:
+  backend_postgres_data:

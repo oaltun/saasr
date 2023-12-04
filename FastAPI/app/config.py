@@ -22,11 +22,11 @@ class AppSettings(BaseSettings):
         env_file_encoding = "utf-8"
 
     # db
-    SHAREDPOSTGRES_SUPERUSERNAME: str
-    SHAREDPOSTGRES_SUPERUSERPASS: str
-    SHAREDPOSTGRES_HOST: str
-    SHAREDPOSTGRES_PORT: int
-    SHAREDPOSTGRES_SUPERUSERDB: str
+    POSTGRES_SUPERUSERNAME: str
+    POSTGRES_SUPERUSERPASS: str
+    POSTGRES_HOST: str
+    POSTGRES_PORT: int
+    POSTGRES_SUPERUSERDB: str
     DATABASE_URL: PostgresDsn = None
     DATABASE_TABLE_PREFIX: str = "saasr_"
 
@@ -37,11 +37,11 @@ class AppSettings(BaseSettings):
     MAIL_SENDER_NAME: str = "Oğuz Altun"
 
     # mail
-    SAASR_SENDINBLUE_API_KEY: str
+    SENDINBLUE_API_KEY: str
 
     # iyzico
-    SAASR_IYZICO_API_KEY: str
-    SAASR_IYZICO_SECRET_KEY: str
+    IYZICO_API_KEY: str
+    IYZICO_SECRET_KEY: str
     IYZICO_BASE_URL: str = "sandbox-api.iyzipay.com"
 
     # env
@@ -60,7 +60,7 @@ class AppSettings(BaseSettings):
 
 settings = AppSettings()
 if settings.DATABASE_URL is None:
-    settings.DATABASE_URL = f"postgresql://{settings.SHAREDPOSTGRES_SUPERUSERNAME}:{settings.SHAREDPOSTGRES_SUPERUSERPASS}@{settings.SHAREDPOSTGRES_HOST}:{settings.SHAREDPOSTGRES_PORT}/{settings.SHAREDPOSTGRES_SUPERUSERDB}"
+    settings.DATABASE_URL = f"postgresql://{settings.POSTGRES_SUPERUSERNAME}:{settings.POSTGRES_SUPERUSERPASS}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_SUPERUSERDB}"
 
 if settings.SAASR_DEBUG:
     print("SETTINGS", settings)

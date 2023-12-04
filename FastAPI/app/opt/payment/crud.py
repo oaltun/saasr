@@ -23,8 +23,8 @@ from sqlalchemy.orm import Session
 
 
 iyzico_options = {
-    "api_key": config.settings.SAASR_IYZICO_API_KEY,
-    "secret_key": config.settings.SAASR_IYZICO_SECRET_KEY,
+    "api_key": config.settings.IYZICO_API_KEY,
+    "secret_key": config.settings.IYZICO_SECRET_KEY,
     "base_url": config.settings.IYZICO_BASE_URL,
 }
 

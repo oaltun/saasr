@@ -11,19 +11,18 @@ services:
 
     environment:
       SAASR_DEBUG: 0
-      PYTHONPATH: "."
       SAASR_SUPERUSER_EMAIL: mail@example.com
       SAASR_SUPERUSER_PASSWORD: pass
-      SAASR_SENDINBLUE_API_KEY: key_from_send_in_blue
-      SAASR_IYZICO_API_KEY: iyzico_api_key
-      SAASR_IYZICO_SECRET_KEY: iyzico_secret_key
+      SENDINBLUE_API_KEY: key_from_send_in_blue
+      IYZICO_API_KEY: iyzico_api_key
+      IYZICO_SECRET_KEY: iyzico_secret_key
       SAASR_TOKEN_SECRET_KEY: a secret key
       SAASR_TOKEN_ALGORITHM: HS256
-      SHAREDPOSTGRES_SUPERUSERNAME: postgres
-      SHAREDPOSTGRES_SUPERUSERPASS: postgres123
-      SHAREDPOSTGRES_HOST: backend_postgres
-      SHAREDPOSTGRES_PORT: 5432
-      SHAREDPOSTGRES_SUPERUSERDB: postgres
+      POSTGRES_SUPERUSERNAME: postgres
+      POSTGRES_SUPERUSERPASS: postgres123
+      POSTGRES_HOST: backend_postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_SUPERUSERDB: postgres
       SAASR_ENV_NAME:
 
   backend_postgres:

@@ -1,102 +1,14 @@
-## SAASR BACKEND FRAMEWORK
+## SAASR FastAPI
 
-# Requirements:
+A SaaS starter / template for FastAPI.
 
-    DB: postgres 12
-    OS: works on Windows WSL2 (Linux), but should work anywhere. Docker not needed.
-    Python: 3.8.10
-    Package Manager: Poetry
+After the [installation](INSTALL.md), you should be able to see api documentation at http://localhost:8888/api/docs. Be carefull, address is NOT http://localhost:8888.
 
-# Installation (WSL2)
+The superuser account you set up in .env file is active, so you can login with it.
 
-## Install Requirements
+The sign-up functionality is also active!
 
-- Install the Postgresql 12 db. In it create a db for your app. Lets say it is `app`. Also create a db called `app_test`. This will be used for running python tests.
-
-- Install python 3.8.10.
-
-  I think the easiest way to install a specific python version is through miniconda. For this, first install miniconda python distribution. That will add the command `conda` to your path. Following will create a virtual environment with python 3.8.10 in venv directory.
-
-  > conda create -p c:\Users\oguz\Desktop\backend\venv python=3.8.10
-
-- if you dont use conda and python 3.8.10 is already installed you can create a virtual environment with:
-  > python3 -m venv venv
-- Then activate that virtual enviornment. How you do this depends on OS and distribution:
-
-  - Using conda: conda activate c:\Users\oguz\Desktop\backend\venv
-  - On Unix or MacOS, using the bash shell: source /path/to/venv/bin/activate
-  - On Unix or MacOS, using the csh shell: source /path/to/venv/bin/activate.csh
-  - On Unix or MacOS, using the fish shell: source /path/to/venv/bin/activate.fish
-  - On Windows using the Command Prompt: path\to\venv\Scripts\activate.bat
-  - On Windows using PowerShell: path\to\venv\Scripts\Activate.ps1
-
-  When you work on this project, always first activate this virtual environment. When you install python packages, they will be installed in this virtual environments. Different projects should have different virtual environments, so that package versions do not collide.
-
-  Also in editors like vscode, select the interpreter in this environment as interpreter. This way, everything should work fine.
-
-  When you finish working on this project, you can deactivate the virtual environment. To do that, you do something like
-
-  > deactivate
-
-  or something...
-
-  But now, let us keep the virtual environment active, or re-activate it if you deactivated. Then
-
-- install poetry into virtual environment.
-
-  > python -m pip install poetry
-
-- install packages into virtual environment:
-
-  > poetry install
-
-## Setup DB
-
-- Using pgadmin4 or psql create two databases. Let us say first database name is app. The second database name should be app_test. First database will be for real application. Second database will be for pytest.
-
-- copy `example_secret_values.py` to `secret_values.py`
-
-- edit `secret_values.py`. things like iyzico key can be random strings. superuser email and password are necessary to login to the system after installation. token algorithm and database url parts also need to be correct.
-
-## Run pytest tests
-
-- Try running tests. If there is a mistake fix and report back.
-
-  > pytest -x
-
-## Create tables
-
-- Since this will be a fresh install remove everything in app/alembic/versions.
-
-- Create new alembic revisions:
-
-  > python3 -m alembic.config revision --autogenerate -m "first"
-
-  Check whether everything is OK in app/alembic/versions.
-
-- Now create real database tables (on linux (and WSL2) python3, but on windows use python)
-
-  > python3 -m alembic.config upgrade head
-
-## Add initial data to the tables
-
-- create initial data in the tables. The superuser mail and pass will come from secret_values.py, make sure they are good.:
-
-  > python3 -m app.initial_data
-
-## Start server
-
-- start server. after that you can edit files and uvicorn will reload automatically
-
-  > uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload
-
-  or
-
-  > python3 -m app.main
-
-- visit api documentation at http://localhost:8888/api/docs. Be carefull, address is NOT http://localhost:8888.
-
-# CODING STYLE
+# ON THE CODING STYLE
 
 ## SECTIONS
 

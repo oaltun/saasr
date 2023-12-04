@@ -11,7 +11,7 @@ from fastapi import status, HTTPException
 from app.config import settings
 headers = {
     "accept":"application/json",
-    "api-key": settings.SAASR_SENDINBLUE_API_KEY,
+    "api-key": settings.SENDINBLUE_API_KEY,
     "content-type": "application/json"
 }
 url = "https://api.sendinblue.com/v3/smtp/email"
