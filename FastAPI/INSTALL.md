@@ -33,7 +33,7 @@ This will give you a nice bash shell that you can run following commands:
 Apply database migrations:
 
 ```bash
-alembic upgrade head
+python -m alembic upgrade head
 ```
 
 Populate initial data:
