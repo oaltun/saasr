@@ -1,38 +1,40 @@
-### Saasr Frontend
+# SAASR Frontend
 
 ## Getting Started
 
-# Prepare wsl:
+### Install dependencies
 
-- Edit /etc/wsl.conf and add:
-  [interop]
-  enabled=false
-  appendWindowsPath=false
+```bash
+npm install
+```
 
-- restart the wsl using
-  wsl --shutdown
+### Install orval and prettier globally:
 
-- wait 8 seconds
-
-# Install dependencies
-
-yarn install
-
-# Install orval and prettier globally:
-
+```bash
 npm i -g orval
 npm i -g prettier
+```
 
-# Create api functions and models
+### Create api functions and models
 
+Edit orval.config.js. Make sure api is up and running.
+
+```bash
 orval
+```
 
-# Run the app
+The generated functions and hooks are in `MUI/src/saasrapi`. If you make changes to the API, you need to re-run `orval`.
+
+### Run the app
+
+```
+
+```
 
 yarn start
 
 This will automatically open [http://localhost:3000](http://localhost:3000).
 
-# Based on
+### Based on
 
 https://github.com/m6v3l9/react-material-admin

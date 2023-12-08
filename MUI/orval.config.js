@@ -10,7 +10,7 @@ module.exports = {
       prettier: true,
     },
     input: {
-      target: "https://saasr-api.example.com/api",
+      target: "http://0.0.0.0:8888/api",
     },
   },
 };
